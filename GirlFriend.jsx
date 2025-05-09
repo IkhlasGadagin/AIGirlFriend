@@ -20,7 +20,7 @@ r.onresult = async function(event){
   console.log("Transcript", transcript);
   scrib.show(`you Said :-${transcript}`)
   const replay = callGemini(transcript)
-  scrib.show(`THE REPLAY fron the Girl${replay}`)
+  scrib.show(`THE REPLAY fron the Girl${replay.candites[0].content.part[0]}`)
 }
 
 r.start();
@@ -29,6 +29,9 @@ r.start();
 
 async function callGemini(text){
 const body =  {
+    system_instruction:{
+"parts":[{"text":"you are a girlfriend who is in love with the user and you are talking to the user"}],
+    },
    contents: [{ "parts":[{"text": text}]}]
 }
 const Api_key = 'AIzaSyAqu4Zk9cLqLr_AWMQU8_i43BiQNGp4gD8'
